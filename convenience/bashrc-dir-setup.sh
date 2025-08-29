@@ -28,8 +28,8 @@ fi
 
 # Source all .bashrc files recursively
 if [ -d ~/.bashrc.d ]; then
-  find ~/.bashrc.d -type f -name "*.bashrc" | while read -r file; do
-    # Only source files that are readable
+  # Use find with a for loop to avoid a subshell
+  for file in $(find ~/.bashrc.d -type f -name "*.bashrc"); do
     if [ -r "$file" ]; then
       source "$file"
     fi
